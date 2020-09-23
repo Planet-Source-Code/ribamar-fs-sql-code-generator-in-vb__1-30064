@@ -1,0 +1,180 @@
+				SQL GENERATOR
+
+
+			    USE SQLGenerator.EXE
+				
+				STEP-TO-STEP
+
+COMMON TO ALL QUERYS
+
+1 - Select a Database and wait
+2 - Select a Table
+3 - Select a Query Type and to:
+
+
+FOR EACH QUERY INDIVIDUALLY
+
+I - INSERT INTO
+    I.1 - Click in "Insert Into" and Select a Field
+	I.1.1 - Enter a value for each Field selected
+	I.1.2 - Then click in Generate button
+	I.1.3 - In TextBox below appear the respective sintaxe
+	I.1.4 - Click in Copy to Clipboard button and altern to your 
+		program and Ctrl+V to paste the code
+Sample:
+'SQL GENERATOR
+
+'Use suggestion:
+'In VB and Access 2000 make reference to DAO:
+'In General Declaration:
+
+Dim d As Database
+'In Event Form_Load():
+
+Set d = OpenDatabase(strPathDatabase)
+'In Procedure to use SQL:
+
+d.Execute "INSERT INTO Alunos (Login, Nome, Email) VALUES ('ribafs', 'Ribamar FS', 'ribafs@yahoo.com')"
+
+
+II - SELECT
+    II.1 - Click in "Select" 
+	II.1.1 - Click in "Select a Field" clicking in this
+	II.1.2 - Click in another field to select 
+		 To insert a blank value to don't required field only press Enter in your Value
+	II.1.3 - Then click in Generate button 
+Sample:
+
+...
+d.Execute "SELECT Login, Nome, Email FROM Alunos"
+
+
+III - DELETE (DELETE ONLY A REGISTER)
+     III.1 - Click in "Delete" 
+	III.1.1 - Click in a Field in "Select a Field"
+	III.1.2 - Then click in Generate button 
+Sample:
+
+...
+d.Execute "DELETE FROM Alunos WHERE Email = "
+
+
+IV - UPDATE
+     IV.1 - Click in "Update" 
+	IV.1.1 - Click in a Field in "Select a Field"
+	IV.1.2 - Then click in Generate button 
+	IV.1.3 - Enter a Current Value of Field selected
+	IV.1.4 - Enter a New Value of Field selected
+Sample:
+
+...
+d.Execute "UPDATE Alunos SET Nome = 'John Blues' WHERE Nome = 'Ribamar'"
+
+
+V - ADD FIELD (ALTER TABLE)
+     V.1 - Click in "Add Field" 
+	V.1.1 - Click in "Data Type" to select a Data type to Field
+	V.1.1 - Then click in Generate button 
+	V.1.2 - Enter Field Name do ADD
+Sample:
+
+...      
+d.Execute "ALTER TABLE Alunos ADD COLUMN Address TEXT"
+
+
+VI - ALTER FIELD (ALTER TABLE)
+     VI.1 - Click in "Alter Field" 
+	VI.1.1 - Click in "Select a Field" to select a field to ALTER
+	VI.1.2 - Click in "Data Type" to select a NEW Data type to Field
+	VI.1.3 - Then click in Generate button 
+	VI.1.4 - Enter a NEW Field Name do ALTER
+Sample:
+
+...      
+d.Execute "ALTER TABLE Alunos DROP COLUMN Email"
+d.Execute "ALTER TABLE Alunos ADD COLUMN MyEmail LONGTEXT"
+
+
+VII - DROP TABLE
+     VII.1 - Click in Generate button after click in a Table
+Sample:
+
+...      
+d.Execute "DROP TABLE Custon"
+
+
+VIII - DROP A FIELD (ALTER TABLE)
+     VIII.1 - Clique in "Drop Field"
+     VIII.2 - Click in a Field in "Select a Field" to Drop
+     VIII.1 - Click in Generate button
+Sample:
+
+...      
+d.Execute "ALTER TABLE Alunos DROP COLUMN  Email"
+
+
+Tip: To run in VB5, open the project file in Notepad and remove line with Retained word.
+
+
+			USE ADD-IN SQLGeneratorAddIn.dll
+
+- Register SQLGeneratorAddIn.dll:
+- Copy to c:\windows\system
+- Start Menu - Run - regsvr32.exe SQLGeneratorAddIn.dll
+- Open VB and click in menu Add-Ins - Add-In Manager - SQLGeneratorAddIn - Loaded/Unloades - OK
+- In Menu Add-Ins click in SQL GeneratorAddIn and use the tool
+
+AGREGATE FUNCTIONS
+
+AVG
+
+SELECT Avg([Frete]) AS [MédiaDeFrete] FROM Pedidos WHERE [Frete] > 100;
+
+COUNT
+
+SELECT CódigoDoFuncionário, Count(NúmeroDoPedido) AS ContagemDeNúmeroDoPedido
+FROM Pedidos
+
+MIN
+
+SELECT Min([Frete]) AS [FreteMínimo] FROM Pedidos WHERE [PaísDeDestino] = 'Reino Unido';
+
+MAX
+
+SELECT CódigoDaCategoria, Max(PreçoUnitário) AS MáximoDePreçoUnitário
+FROM Produtos
+
+STDEV
+
+SELECT StDev([Frete]) AS [DesvioFrete] FROM Pedidos WHERE [PaísDeDestino] = 'Reino Unido';
+
+STDEVP
+
+SELECT StDevP([Frete]) AS [DesvioPFrete] FROM Pedidos WHERE [PaísDeDestino] = 'Reino Unido';
+
+SUM
+
+SELECT
+Sum(PreçoUnitário * Quantidade)
+AS [Receita Total] FROM [Detalhes do Pedido];
+
+VAR
+
+SELECT Var([Frete]) AS [VariânciaFreteReinoUnido] FROM Pedidos WHERE [PaísDeDestino] = 'Reino Unido';
+
+VARP
+
+SELECT VarP([Frete]) AS [VariânciaFreteReinoUnido] FROM Pedidos WHERE [PaísDeDestino] = 'Reino Unido';
+
+
+
+Want creat Add-In? See my tutorial about here in PSC.
+
+
+Binaries in:
+http://www.geocities.com/ribafs/
+
+_________________________
+Ribamar FS
+ribafs@yahoo.com
+http://ribafs.hp10.com.br
